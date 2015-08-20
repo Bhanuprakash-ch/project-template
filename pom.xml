@@ -17,7 +17,15 @@
         <repository.release.id>releases</repository.release.id>
         <repository.release.name>ReleaseRepository</repository.release.name>
         <repository.release.url>file:///${user.home}/.m2/releases</repository.release.url>
-	<hadoop.version>2.6.0-cdh5.4.2.1</hadoop.version>
+        
+        <hadoop.version>2.6.0-cdh5.4.2.1</hadoop.version>
+
+        <skip-jacoco>false</skip-jacoco>
+        <skip-jacoco-check>false</skip-jacoco-check>
+        <jacoco-measurement-instructions>0</jacoco-measurement-instructions>
+        <jacoco-measurement-branches>0</jacoco-measurement-branches>
+        <jacoco-measurement-lines>0</jacoco-measurement-lines>
+        <jacoco-measurement-classes>0</jacoco-measurement-classes>
     </properties>
     
     <build>
@@ -32,11 +40,11 @@
                     </configuration>
                 </plugin>
                 <plugin>
-		    <groupId>org.apache.maven.plugins</groupId>
-		    <artifactId>maven-release-plugin</artifactId>
-		    <version>2.5.2</version>
-		</plugin>
-		<plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.5.2</version>
+                </plugin>
+                <plugin>
                     <groupId>com.mycila</groupId>
                     <artifactId>license-maven-plugin</artifactId>
                     <version>2.6</version>
@@ -44,27 +52,89 @@
                         <header>license/license_header.txt</header>
                         <includes>
                             <include>src/**/*.java</include>
-			    <include>src/**/*.html</include>
-			    <include>tools/*.sh</include>
+                                <include>src/**/*.html</include>
+                                <include>tools/*.sh</include>
                             <include>license/*.sh</include>
                             <include>license_checker/*.sh</include>
-                        </includes>                  
-                    <mapping>
-                        <java>JAVADOC_STYLE</java>
-			<sh>SCRIPT_STYLE</sh>
-		        <html>XML_STYLE</html> 
-                    </mapping>
-                 </configuration>
-                 <executions>
-                    <execution>
-                        <id>check-license</id>
-                        <phase>initialize</phase>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+                        </includes>
+                        <mapping>
+                            <java>JAVADOC_STYLE</java>
+                            <sh>SCRIPT_STYLE</sh>
+                            <html>XML_STYLE</html>
+                        </mapping>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>check-license</id>
+                            <phase>initialize</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.7.4.201502262128</version>
+                    <configuration>
+                        <skip>${skip-jacoco}</skip>
+                        <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
+                        <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>jacoco-initialize</id>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>jacoco-site</id>
+                            <phase>verify</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>jacoco-check</id>
+                            <phase>initialize</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                            <configuration>
+                                <skip>${skip-jacoco-check}</skip>
+                                <rules>
+                                    <rule>
+                                        <element>BUNDLE</element>
+                                        <limits>
+                                            <limit>
+                                                <counter>INSTRUCTION</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum>${jacoco-measurement-instructions}</minimum>
+                                            </limit>
+                                            <limit>
+                                                <counter>BRANCH</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum>${jacoco-measurement-branches}</minimum>
+                                            </limit>
+                                            <limit>
+                                                <counter>LINE</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum>${jacoco-measurement-lines}</minimum>
+                                            </limit>
+                                            <limit>
+                                                <counter>CLASS</counter>
+                                                <value>COVEREDRATIO</value>
+                                                <minimum>${jacoco-measurement-classes}</minimum>
+                                            </limit>
+                                        </limits>
+                                    </rule>
+                                </rules>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
             </plugins>
         </pluginManagement>
     </build>
