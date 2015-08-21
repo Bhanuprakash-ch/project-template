@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.trustedanalytics</groupId>
     <artifactId>project-template</artifactId>
-    <packaging>pom</packaging>	
-    <version>0.4.2-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <version>0.4.2</version>
     <name>Parent POM</name>
 
 
