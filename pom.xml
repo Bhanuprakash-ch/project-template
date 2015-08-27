@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.trustedanalytics</groupId>
     <artifactId>project-template</artifactId>
     <packaging>pom</packaging>
-    <version>0.4.2</version>
+    <version>0.4.3</version>
     <name>Parent POM</name>
 
 
@@ -17,8 +17,9 @@
         <repository.release.id>releases</repository.release.id>
         <repository.release.name>ReleaseRepository</repository.release.name>
         <repository.release.url>file:///${user.home}/.m2/releases</repository.release.url>
-        
         <hadoop.version>2.6.0-cdh5.4.2.1</hadoop.version>
+
+        <git-repository>trustedanalytics-cloud-parent-placeholder</git-repository>
 
         <skip-jacoco>false</skip-jacoco>
         <skip-jacoco-check>false</skip-jacoco-check>
@@ -27,7 +28,12 @@
         <jacoco-measurement-lines>0</jacoco-measurement-lines>
         <jacoco-measurement-classes>0</jacoco-measurement-classes>
     </properties>
-    
+
+    <scm>
+        <connection>scm:git:git@${artifactId}:${git-repository}</connection>
+        <tag>HEAD</tag>
+    </scm>
+
     <build>
         <pluginManagement>
             <plugins>
@@ -48,12 +54,12 @@
                     <groupId>com.mycila</groupId>
                     <artifactId>license-maven-plugin</artifactId>
                     <version>2.6</version>
-                    <configuration>   
+                    <configuration>
                         <header>license/license_header.txt</header>
                         <includes>
                             <include>src/**/*.java</include>
-                                <include>src/**/*.html</include>
-                                <include>tools/*.sh</include>
+                            <include>src/**/*.html</include>
+                            <include>tools/*.sh</include>
                             <include>license/*.sh</include>
                             <include>license_checker/*.sh</include>
                         </includes>
