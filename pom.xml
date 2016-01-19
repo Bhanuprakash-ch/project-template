@@ -5,7 +5,7 @@
     <groupId>org.trustedanalytics</groupId>
     <artifactId>project-template</artifactId>
     <packaging>pom</packaging>
-    <version>0.4.5</version>
+    <version>0.4.6</version>
     <name>Parent POM</name>
 
 
@@ -17,7 +17,7 @@
         <repository.release.id>releases</repository.release.id>
         <repository.release.name>ReleaseRepository</repository.release.name>
         <repository.release.url>file:///${user.home}/.m2/releases</repository.release.url>
-        <hadoop.version>2.6.0-cdh5.4.2.1</hadoop.version>
+        <hadoop.version>2.6.0-cdh5.5.1</hadoop.version>
 
         <git-repository>trustedanalytics-cloud-parent-placeholder</git-repository>
 
