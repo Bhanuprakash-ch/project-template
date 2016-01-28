@@ -5,9 +5,27 @@
     <groupId>org.trustedanalytics</groupId>
     <artifactId>project-template</artifactId>
     <packaging>pom</packaging>
-    <version>0.4.6</version>
+    <version>0.4.7</version>
     <name>Parent POM</name>
+    <description>Project template</description>
+    <url>http://trustedanalytics.org/</url>
 
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>TAP-developers</id>
+            <name>TAP</name>
+            <email>trustedanalytics@gmail.com</email>
+            <organization>Trusted Analytics Platform</organization>
+            <organizationUrl>http://trustedanalytics.github.io</organizationUrl>
+        </developer>
+    </developers>
 
     <properties>
         <repository.snapshot.id>snapshots</repository.snapshot.id>
@@ -30,8 +48,7 @@
     </properties>
 
     <scm>
-        <connection>scm:git:git@${artifactId}:${git-repository}</connection>
-        <tag>HEAD</tag>
+        <url>https://github.com/trustedanalytics/project-template</url>
     </scm>
 
     <build>
@@ -53,6 +70,14 @@
             </plugins>
         </pluginManagement>
         <plugins>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.1</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.4</version>
+            </plugin>
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
