@@ -5,7 +5,7 @@
     <groupId>org.trustedanalytics</groupId>
     <artifactId>project-template</artifactId>
     <packaging>pom</packaging>
-    <version>0.4.8</version>
+    <version>0.4.9</version>
     <name>Parent POM</name>
     <description>Project template</description>
     <url>http://trustedanalytics.org/</url>
@@ -50,6 +50,14 @@
     <scm>
         <url>https://github.com/trustedanalytics/project-template</url>
     </scm>
+
+    <repositories>
+        <repository>
+	    <id>cloudera</id>
+	    <name>Cloudera Repository</name>
+	    <url>http://repository.cloudera.com/</url>
+        </repository>
+    </repositories>
 
     <build>
         <pluginManagement>
